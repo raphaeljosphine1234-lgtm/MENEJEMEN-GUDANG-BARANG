@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JO SHOP - Sistem Manajemen Gudang</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <h2>JO SHOP</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="nav-link active" data-target="dashboard-section"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="#" class="nav-link" data-target="barang-section"><i class="fa-solid fa-box"></i> Data Barang</a></li>
+                <li><a href="#" class="nav-link" data-target="masuk-section"><i class="fa-solid fa-arrow-down"></i> Barang Masuk</a></li>
+                <li><a href="#" class="nav-link" data-target="keluar-section"><i class="fa-solid fa-arrow-up"></i> Barang Keluar</a></li>
+                <li><a href="#" class="nav-link" data-target="riwayat-section"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Transaksi</a></li>
+                <li><a href="#" class="nav-link" data-target="laporan-section"><i class="fa-solid fa-file-lines"></i> Laporan</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>&copy; 2026 JO SHOP</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TOP NAVBAR -->
+            <header class="top-navbar">
+                <button id="sidebar-toggle" class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="user-profile">
+                    <i class="fa-solid fa-user-circle"></i>
+                    <span>Admin Gudang</span>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- 1. DASHBOARD SECTION -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>Dashboard</h1>
+                        <p>Ringkasan kondisi inventaris gudang JO SHOP.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue"><i class="fa-solid fa-boxes-stacked"></i></div>
+                            <div class="stat-info">
+                                <h3>Total Jenis Barang</h3>
+                                <p id="stat-total-jenis">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon gray"><i class="fa-solid fa-box-open"></i></div>
+                            <div class="stat-info">
+                                <h3>Total Stok Barang</h3>
+                                <p id="stat-total-stok">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                            <div class="stat-info">
+                                <h3>Barang Masuk (Total)</h3>
+                                <p id="stat-total-masuk">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                            <div class="stat-info">
+                                <h3>Barang Keluar (Total)</h3>
+                                <p id="stat-total-keluar">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Peringatan Stok Menipis -->
+                    <div class="alert-box" id="alert-stok-container">
+                        <div class="alert-header"><i class="fa-solid fa-triangle-exclamation"></i> Peringatan Stok Menipis (&lt; 5 unit)</div>
+                        <ul id="alert-stok-list">
+                            <!-- Diisi via JavaScript -->
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 2. DATA BARANG SECTION -->
+                <section id="barang-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Data Barang</h1>
+                        <button class="btn btn-primary" id="btn-tambah-barang"><i class="fa-solid fa-plus"></i> Tambah Barang</button>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-toolbar">
+                            <div class="search-box">
+                                <i class="fa-solid fa-search"></i>
+                                <input type="text" id="search-barang" placeholder="Cari nama atau kode barang...">
+                            </div>
+                            <div class="filter-box">
+                                <select id="filter-kategori">
+                                    <option value="">Semua Kategori</option>
+                                    <option value="Elektronik">Elektronik</option>
+                                    <option value="Pakaian">Pakaian</option>
+                                    <option value="Makanan">Makanan</option>
+                                    <option value="Aksesori">Aksesori</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table">
+                               <thead>
+                                   <tr>
+                                       <th>Kode</th>
+                                       <th>Nama Barang</th>
+                                       <th>Kategori</th>
+                                       <th>Stok</th>
+                                       <th>Satuan</th>
+                                       <th>Harga (Rp)</th>
+                                       <th>Lokasi</th>
+                                       <th>Aksi</th>
+                                   </tr>
+                               </thead>
+                               <tbody id="tabel-barang-body">
+                                   <!-- Diisi via JavaScript -->
+                               </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. BARANG MASUK SECTION -->
+                <section id="masuk-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Barang Masuk</h1>
+                        <p>Catat masuknya barang ke gudang.</p>
+                    </div>
+
+                    <div class="card form-card">
+                        <form id="form-barang-masuk">
+                            <div class="form-group">
+                                <label>Pilih Barang</label>
+                                <select id="masuk-kode" required>
+                                    <option value="">-- Pilih Barang --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah Masuk</label>
+                                <input type="number" id="masuk-jumlah" min="1" required placeholder="Contoh: 10">
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Masuk</label>
+                                <input type="date" id="masuk-tanggal" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama Pemasok (Supplier)</label>
+                                <input type="text" id="masuk-pemasok" required placeholder="Nama Toko / PT / Supplier">
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan Barang Masuk</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- 4. BARANG KELUAR SECTION -->
+                <section id="keluar-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Barang Keluar</h1>
+                        <p>Catat keluarnya barang dari gudang.</p>
+                    </div>
+
+                    <div class="card form-card">
+                        <form id="form-barang-keluar">
+                            <div class="form-group">
+                                <label>Pilih Barang</label>
+                                <select id="keluar-kode" required>
+                                    <option value="">-- Pilih Barang --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah Keluar</label>
+                                <input type="number" id="keluar-jumlah" min="1" required placeholder="Contoh: 5">
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Keluar</label>
+                                <input type="date" id="keluar-tanggal" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama Penerima / Tujuan</label>
+                                <input type="text" id="keluar-penerima" required placeholder="Nama Pembeli / Cabang">
+                            </div>
+                            <button type="submit" class="btn btn-warning"><i class="fa-solid fa-floppy-disk"></i> Simpan Barang Keluar</button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- 5. RIWAYAT TRANSAKSI SECTION -->
+                <section id="riwayat-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Riwayat Transaksi</h1>
+                        <p>Catatan seluruh arus barang masuk dan keluar.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-toolbar">
+                            <div class="search-box">
+                                <i class="fa-solid fa-search"></i>
+                                <input type="text" id="search-riwayat" placeholder="Cari riwayat (nama/keterangan)...">
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Kode Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jenis</th>
+                                        <th>Jumlah</th>
+                                        <th>Keterangan (Supplier/Penerima)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabel-riwayat-body">
+                                    <!-- Diisi via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. LAPORAN SECTION -->
+                <section id="laporan-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Laporan Gudang</h1>
+                        <button class="btn btn-primary" id="btn-cetak"><i class="fa-solid fa-print"></i> Cetak Laporan</button>
+                    </div>
+
+                    <div class="card printable-area">
+                        <div class="print-header">
+                            <h2>JO SHOP - LAPORAN INVENTARIS GUDANG</h2>
+                            <p id="print-date">Tanggal Cetak: -</p>
+                        </div>
+                        
+                        <h3>A. Stok Barang Saat Ini</h3>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Nama Barang</th>
+                                        <th>Kategori</th>
+                                        <th>Stok</th>
+                                        <th>Satuan</th>
+                                        <th>Harga (Rp)</th>
+                                        <th>Lokasi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="laporan-stok-body"></tbody>
+                            </table>
+                        </div>
+
+                        <h3 style="margin-top: 30px;">B. Riwayat Transaksi Masuk & Keluar</h3>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Kode</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jenis</th>
+                                        <th>Jumlah</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="laporan-riwayat-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL TAMBAH/EDIT BARANG -->
+    <div id="modal-barang" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Tambah Barang Baru</h3>
+                <button class="modal-close" id="btn-close-modal">&times;</button>
+            </div>
+            <form id="form-barang">
+                <input type="hidden" id="edit-index" value="">
+                <div class="form-group">
+                    <label>Kode Barang</label>
+                    <input type="text" id="barang-kode" required placeholder="Contoh: BRG001">
+                </div>
+                <div class="form-group">
+                    <label>Nama Barang</label>
+                    <input type="text" id="barang-nama" required placeholder="Nama produk">
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select id="barang-kategori" required>
+                        <option value="Elektronik">Elektronik</option>
+                        <option value="Pakaian">Pakaian</option>
+                        <option value="Makanan">Makanan</option>
+                        <option value="Aksesori">Aksesori</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Stok Awal</label>
+                    <input type="number" id="barang-stok" min="0" required placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label>Satuan</label>
+                    <input type="text" id="barang-satuan" required placeholder="Pcs / Box / Kg">
+                </div>
+                <div class="form-group">
+                    <label>Harga (Rp)</label>
+                    <input type="number" id="barang-harga" min="0" required placeholder="10000">
+                </div>
+                <div class="form-group">
+                    <label>Lokasi Penyimpanan</label>
+                    <input type="text" id="barang-lokasi" required placeholder="Rak A1 / Gudang Utama">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
