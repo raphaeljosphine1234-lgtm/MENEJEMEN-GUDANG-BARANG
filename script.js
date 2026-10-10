@@ -1,6 +1,6 @@
 // DATA & STATE INITIALIZATION
 let dataBarang = JSON.parse(localStorage.getItem('jo_shop_barang')) || [
-    { kode: 'BRG001', nama: 'Kemeja Flanel Casual', kategori: 'Pakaian', stok: 15, satuan: 'Pcs', harga: 125000, lokasi: 'Rak A1' },
+    { kode: 'BRG001', nama: 'Kemeja josjis', kategori: 'Pakaian', stok: 15, satuan: 'Pcs', harga: 125000, lokasi: 'Rak A1' },
     { kode: 'BRG002', nama: 'Mouse Gaming RGB', kategori: 'Elektronik', stok: 4, satuan: 'Unit', harga: 175000, lokasi: 'Rak B2' },
     { kode: 'BRG003', nama: 'Keripik Singkong Balado', kategori: 'Makanan', stok: 30, satuan: 'Bungkus', harga: 12000, lokasi: 'Rak C1' },
     { kode: 'BRG004', nama: 'Flashdisk 32GB', kategori: 'Elektronik', stok: 2, satuan: 'Pcs', harga: 65000, lokasi: 'Rak B1' }
