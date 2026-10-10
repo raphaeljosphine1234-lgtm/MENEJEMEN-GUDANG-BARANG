@@ -7,7 +7,7 @@ let dataBarang = JSON.parse(localStorage.getItem('jo_shop_barang')) || [
 ];
 
 let dataRiwayat = JSON.parse(localStorage.getItem('jo_shop_riwayat')) || [
-    { tanggal: '2026-10-01', kode: 'BRG001', nama: 'Kemeja Flanel Casual', jenis: 'Masuk', jumlah: 20, keterangan: 'Supplier Textile Jaya' },
+    { tanggal: '2026-10-01', kode: 'BRG001', nama: 'Kemeja josjis', jenis: 'Masuk', jumlah: 20, keterangan: 'Supplier Textile Jaya' },
     { tanggal: '2026-10-03', kode: 'BRG001', nama: 'Kemeja josjis', jenis: 'Keluar', jumlah: 5, keterangan: 'Toko Cabang Timur' },
     { tanggal: '2026-10-05', kode: 'BRG002', nama: 'Mouse Gaming RGB', jenis: 'Masuk', jumlah: 10, keterangan: 'Distributor Komputer Indo' },
     { tanggal: '2026-10-07', kode: 'BRG002', nama: 'Mouse Gaming RGB', jenis: 'Keluar', jumlah: 6, keterangan: 'Bapak Budi' }
